@@ -21,7 +21,7 @@ CSButton.m
 ```
 
 ## 功能
-- 调整图片与文字相对位置，
+1. 调整图片与文字相对位置，
 配置`cs_buttonImagePositionType`属性即可。
 ```
 @property (nonatomic, assign) CSButtonImagePositionType cs_buttonImagePositionType;
