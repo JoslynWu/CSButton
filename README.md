@@ -10,23 +10,23 @@
 ![](/Screenshot/CSButton_show.png)
 
 ## 接入
-- **方式一**：使用pods导入
+- **方式一**：Cocoapods导入
 
 `pod 'CSButton'`
 
-- **方式二**：将下面文件添加（拖入）项目中
+- **方式二**：直接将下面文件添加（拖入）项目中
 ```
 CSButton.h
 CSButton.m
 ```
 
 ## 功能
-1. 调整图片与文字相对位置，
+1、 调整图片与文字相对位置，
 配置`cs_buttonImagePositionType`属性即可。
 ```
 @property (nonatomic, assign) CSButtonImagePositionType cs_buttonImagePositionType;
 ```
-它是一个枚举类型：
+该属性为枚举类型：
 ```
 typedef NS_ENUM(NSInteger, CSButtonImagePositionType) {
     CSButtonImagePositionTypeDefault,
@@ -35,12 +35,12 @@ typedef NS_ENUM(NSInteger, CSButtonImagePositionType) {
     CSButtonImagePositionTypeBottom 
 };
 ```
-- 调整图片与文字间的距离，
+2、 调整图片与文字间的距离，
 配置`cs_middleDistance`属性即可。
 ```
 @property (nonatomic, assign) CGFloat cs_middleDistance;
 ```
-- 调整图片展示大小，
+3、 调整图片展示大小，
 配置`cs_imageViewSize`属性即可。
 ```
 @property (nonatomic, assign) CGSize cs_imageViewSize;
