@@ -21,6 +21,9 @@
 #define kButton_w_v (75)
 #define kButton_h_v (100)
 
+#define kTestTitleName (@"幸运心加长加长加长")
+#define kTestImgName (@"icon_red")
+
 @interface ViewController ()
 
 @end
@@ -31,7 +34,6 @@
     [super viewDidLoad];
     
     [self setupUI];
-    
 }
 
 -(void)setupUI {
@@ -50,10 +52,12 @@
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"幸运心" forState:UIControlStateNormal];
+    [button setTitle:kTestTitleName forState:UIControlStateNormal];
     button.backgroundColor = [UIColor brownColor];
-    [button setImage:[UIImage imageNamed:@"icon_health"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
+    button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
+    button.cs_imageSize = CGSizeMake(40, 40);
     button.cs_buttonImagePositionType = CSButtonImagePositionTypeTop;
 }
 
@@ -65,10 +69,12 @@
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"幸运心" forState:UIControlStateNormal];
+    [button setTitle:kTestTitleName forState:UIControlStateNormal];
     button.backgroundColor = [UIColor brownColor];
-    [button setImage:[UIImage imageNamed:@"icon_health"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
+    button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
+    button.cs_imageSize = CGSizeMake(40, 40);
     button.cs_buttonImagePositionType = CSButtonImagePositionTypeBottom;
 }
 
@@ -79,7 +85,7 @@
     [self.view addSubview:button];
     
     button.backgroundColor = [UIColor brownColor];
-    [button setImage:[UIImage imageNamed:@"icon_health"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
 }
 
 -(void)leftImageButton{
@@ -89,12 +95,14 @@
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"幸运心" forState:UIControlStateNormal];
+    [button setTitle:kTestTitleName forState:UIControlStateNormal];
     button.backgroundColor = [UIColor brownColor];
-    [button setImage:[UIImage imageNamed:@"icon_health"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
+    button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
+    button.cs_titleMaxWith = 60;
     button.cs_middleDistance = 6;
-    button.cs_imageViewSize = CGSizeMake(20, 20);
+    button.cs_imageSize = CGSizeMake(20, 20);
     button.cs_buttonImagePositionType = CSButtonImagePositionTypeDefault;
 }
 
@@ -105,10 +113,13 @@
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"幸运心" forState:UIControlStateNormal];
+    [button setTitle:kTestTitleName forState:UIControlStateNormal];
     button.backgroundColor = [UIColor brownColor];
-    [button setImage:[UIImage imageNamed:@"icon_health"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
+    button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
+    button.cs_titleMaxWith = 60;
+    button.cs_imageSize = CGSizeMake(20, 20);
     button.cs_buttonImagePositionType = CSButtonImagePositionTypeRight;
 }
 

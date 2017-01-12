@@ -24,6 +24,9 @@ typedef NS_ENUM(NSInteger, CSButtonImagePositionType) {
 @property (nonatomic, assign) CGFloat cs_middleDistance;
 
 /// Custom size for imageView
-@property (nonatomic, assign) CGSize cs_imageViewSize;
+@property (nonatomic, assign) CGSize cs_imageSize;
+
+/// The max with for titleLable
+@property (nonatomic, assign) CGFloat cs_titleMaxWith;
 
 @end

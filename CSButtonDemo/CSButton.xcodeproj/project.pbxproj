@@ -13,7 +13,7 @@
 		9E4F22071E1CD9E200BF679D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F22051E1CD9E200BF679D /* Main.storyboard */; };
 		9E4F22091E1CD9E200BF679D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F22081E1CD9E200BF679D /* Assets.xcassets */; };
 		9E4F220C1E1CD9E200BF679D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F220A1E1CD9E200BF679D /* LaunchScreen.storyboard */; };
-		9E4F22161E1CDA4600BF679D /* CSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F22151E1CDA4600BF679D /* CSButton.m */; };
+		9E6E9B421E27244F002E7F56 /* CSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E9B411E27244F002E7F56 /* CSButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +27,8 @@
 		9E4F22081E1CD9E200BF679D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E4F220B1E1CD9E200BF679D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E4F220D1E1CD9E200BF679D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E4F22141E1CDA4600BF679D /* CSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSButton.h; sourceTree = "<group>"; };
-		9E4F22151E1CDA4600BF679D /* CSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSButton.m; sourceTree = "<group>"; };
+		9E6E9B401E27244F002E7F56 /* CSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSButton.h; sourceTree = "<group>"; };
+		9E6E9B411E27244F002E7F56 /* CSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +86,8 @@
 		9E4F22131E1CDA1F00BF679D /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				9E4F22141E1CDA4600BF679D /* CSButton.h */,
-				9E4F22151E1CDA4600BF679D /* CSButton.m */,
+				9E6E9B401E27244F002E7F56 /* CSButton.h */,
+				9E6E9B411E27244F002E7F56 /* CSButton.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 				9E4F22041E1CD9E200BF679D /* ViewController.m in Sources */,
 				9E4F22011E1CD9E200BF679D /* AppDelegate.m in Sources */,
 				9E4F21FE1E1CD9E200BF679D /* main.m in Sources */,
-				9E4F22161E1CDA4600BF679D /* CSButton.m in Sources */,
+				9E6E9B421E27244F002E7F56 /* CSButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

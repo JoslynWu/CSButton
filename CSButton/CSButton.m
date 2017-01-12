@@ -24,7 +24,7 @@
     [super layoutSubviews];
 
     CGRect imgRect_temp = self.imageView.frame;
-    imgRect_temp.size = self.cs_imageViewSize;
+    imgRect_temp.size = self.cs_imageSize;
     CGRect titleRect_temp = self.titleLabel.frame;
     
     CGFloat distance_v = 0.0;
@@ -34,17 +34,21 @@
     
     CGSize titleSzie = [title boundingRectWithSize:CGSizeMake(self.frame.size.width, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size;
     
+    if (_cs_titleMaxWith) {
+        titleSzie.width = _cs_titleMaxWith;
+    }
+    
+    titleRect_temp.size = titleSzie;
+    
     if (_cs_buttonImagePositionType == CSButtonImagePositionTypeDefault ||
         _cs_buttonImagePositionType == CSButtonImagePositionTypeRight) {
-        
         distance_h = _cs_middleDistance;
     }else {
         distance_v = _cs_middleDistance;
-        titleRect_temp.size.width = titleSzie.width;
     }
     
-    CGFloat margin_x = (self.frame.size.width - (imgRect_temp.size.width + self.titleLabel.bounds.size.width) - distance_h) / 2;
-    CGFloat margin_y = (self.frame.size.height - (imgRect_temp.size.height + self.titleLabel.bounds.size.height) - distance_v) / 2;
+    CGFloat margin_x = (self.frame.size.width - (imgRect_temp.size.width + titleRect_temp.size.width) - distance_h) / 2;
+    CGFloat margin_y = (self.frame.size.height - (imgRect_temp.size.height + titleRect_temp.size.height) - distance_v) / 2;
     
     CGFloat img_y_h = (self.frame.size.height - imgRect_temp.size.height) / 2;
     CGFloat label_y_h = (self.frame.size.height - titleSzie.height) / 2;
@@ -87,14 +91,16 @@
 }
 
 
--(CGSize)cs_imageViewSize {
+-(CGSize)cs_imageSize {
     
-    if (_cs_imageViewSize.height == 0 || _cs_imageViewSize.width == 0) {
+    if (_cs_imageSize.height == 0.0 || _cs_imageSize.width == 0.0) {
         
         return self.imageView.frame.size;
     }else {
-        return _cs_imageViewSize;
+        return _cs_imageSize;
     }
 }
+
+
 
 @end
