@@ -34,8 +34,8 @@
     
     CGSize titleSzie = [title boundingRectWithSize:CGSizeMake(self.frame.size.width, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size;
     
-    if (_cs_titleMaxWith) {
-        titleSzie.width = _cs_titleMaxWith;
+    if (_cs_titleMaxWidth) {
+        titleSzie.width = _cs_titleMaxWidth;
     }
     
     titleRect_temp.size = titleSzie;

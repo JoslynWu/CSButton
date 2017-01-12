@@ -100,7 +100,7 @@
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    button.cs_titleMaxWith = 60;
+    button.cs_titleMaxWidth = 60;
     button.cs_middleDistance = 6;
     button.cs_imageSize = CGSizeMake(20, 20);
     button.cs_buttonImagePositionType = CSButtonImagePositionTypeDefault;
@@ -118,7 +118,7 @@
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    button.cs_titleMaxWith = 60;
+    button.cs_titleMaxWidth = 60;
     button.cs_imageSize = CGSizeMake(20, 20);
     button.cs_buttonImagePositionType = CSButtonImagePositionTypeRight;
 }
