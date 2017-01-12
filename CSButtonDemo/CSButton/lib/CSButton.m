@@ -22,66 +22,48 @@
 
 -(void)layoutSubviews {
     [super layoutSubviews];
-
+    
     CGRect imgRect_temp = self.imageView.frame;
-    imgRect_temp.size = self.cs_imageSize;
     CGRect titleRect_temp = self.titleLabel.frame;
     
-    CGFloat distance_v = 0.0;
-    CGFloat distance_h = 0.0;
+    imgRect_temp.size = self.cs_imageSize;
+    titleRect_temp.size = [self titleSize];
     
-    NSString *title = self.titleLabel.text;
-    
-    CGSize titleSzie = [title boundingRectWithSize:CGSizeMake(self.frame.size.width, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size;
-    
-    if (_cs_titleMaxWidth) {
-        titleSzie.width = _cs_titleMaxWidth;
-    }
-    
-    titleRect_temp.size = titleSzie;
-    
-    if (_cs_buttonImagePositionType == CSButtonImagePositionTypeDefault ||
-        _cs_buttonImagePositionType == CSButtonImagePositionTypeRight) {
-        distance_h = _cs_middleDistance;
-    }else {
-        distance_v = _cs_middleDistance;
-    }
-    
-    CGFloat margin_x = (self.frame.size.width - (imgRect_temp.size.width + titleRect_temp.size.width) - distance_h) / 2;
-    CGFloat margin_y = (self.frame.size.height - (imgRect_temp.size.height + titleRect_temp.size.height) - distance_v) / 2;
+    CGFloat margin_x = (self.frame.size.width - (imgRect_temp.size.width + titleRect_temp.size.width) - self.cs_middleDistance) / 2;
+    CGFloat margin_y = (self.frame.size.height - (imgRect_temp.size.height + titleRect_temp.size.height) - self.cs_middleDistance) / 2;
     
     CGFloat img_y_h = (self.frame.size.height - imgRect_temp.size.height) / 2;
-    CGFloat label_y_h = (self.frame.size.height - titleSzie.height) / 2;
+    CGFloat label_y_h = (self.frame.size.height - titleRect_temp.size.height) / 2;
     
     CGFloat img_x_v = (self.frame.size.width - imgRect_temp.size.width) / 2;
-    CGFloat label_x_v = (self.frame.size.width - titleSzie.width) / 2;
+    CGFloat label_x_v = (self.frame.size.width - titleRect_temp.size.width) / 2;
     
-    switch (self.cs_buttonImagePositionType) {
-        case CSButtonImagePositionTypeRight:
+    switch (self.cs_buttonImagePositionMode) {
+            case CSButtonImagePositionModeRight:
             
             titleRect_temp.origin = CGPointMake(margin_x, label_y_h);
-            imgRect_temp.origin = CGPointMake(margin_x + titleRect_temp.size.width + distance_h, img_y_h);
+            imgRect_temp.origin = CGPointMake(margin_x + titleRect_temp.size.width + self.cs_middleDistance, img_y_h);
             
             break;
             
-        case CSButtonImagePositionTypeTop:
+            case CSButtonImagePositionModeTop:
             
             imgRect_temp.origin = CGPointMake(img_x_v, margin_y);
-            titleRect_temp.origin = CGPointMake(label_x_v, margin_y + imgRect_temp.size.height + distance_v);
+            titleRect_temp.origin = CGPointMake(label_x_v, margin_y + imgRect_temp.size.height + self.cs_middleDistance);
             
             break;
             
-        case CSButtonImagePositionTypeBottom:
+            case CSButtonImagePositionModeBottom:
             
             titleRect_temp.origin = CGPointMake(label_x_v, margin_y);
-            imgRect_temp.origin = CGPointMake(img_x_v, margin_y + titleRect_temp.size.height + distance_v);
+            imgRect_temp.origin = CGPointMake(img_x_v, margin_y + titleRect_temp.size.height + self.cs_middleDistance);
             
             break;
             
         default:
             
             imgRect_temp.origin = CGPointMake(margin_x, img_y_h);
-            titleRect_temp.origin = CGPointMake(margin_x + imgRect_temp.size.width + distance_h, label_y_h);
+            titleRect_temp.origin = CGPointMake(margin_x + imgRect_temp.size.width + self.cs_middleDistance, label_y_h);
             
             break;
     }
@@ -101,6 +83,56 @@
     }
 }
 
+-(CGFloat)cs_middleDistance {
+    
+    if (_cs_middleDistance) {
+        
+        CGFloat distance_max = self.frame.size.width - self.cs_imageSize.width - [self titleSize].width;
+        
+        return (_cs_middleDistance > distance_max) ? distance_max : _cs_middleDistance;
+    }
+    return _cs_middleDistance;
+}
+
+-(CGFloat)cs_titleMaxWidth {
+    
+    if (_cs_titleMaxWidth) {
+        
+        CGFloat title_width_max = self.frame.size.width - self.cs_imageSize.width - _cs_middleDistance;
+        
+        return (_cs_titleMaxWidth > title_width_max) ? title_width_max : _cs_titleMaxWidth;
+    }
+    return _cs_titleMaxWidth;
+}
+
+
+-(CGSize)titleSize {
+    
+    CGFloat maxWidth = 0.0;
+    CGFloat maxHeight = 0.0;
+    
+    NSString *title = self.titleLabel.text;
+    
+    if (self.cs_buttonImagePositionMode == CSButtonImagePositionModeTop ||
+        self.cs_buttonImagePositionMode == CSButtonImagePositionModeBottom) {
+        maxWidth = (self.cs_titleMaxWidth) ? self.cs_titleMaxWidth : self.frame.size.width;
+        maxHeight = self.frame.size.height - self.cs_imageSize.height - self.cs_middleDistance;
+    }else {
+        maxHeight = self.frame.size.height;
+        maxWidth = (self.cs_titleMaxWidth) ? self.cs_titleMaxWidth : (self.frame.size.width - self.cs_imageSize.width - self.cs_middleDistance);
+    }
+    
+    CGSize titleSzie = [title boundingRectWithSize:CGSizeMake(maxWidth, maxHeight)
+                                           options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                        attributes:@{NSFontAttributeName : self.titleLabel.font}
+                                           context:nil].size;
+    
+    if (self.cs_titleMaxWidth) {
+        
+        titleSzie.width = self.cs_titleMaxWidth;
+    }
+    return titleSzie;
+}
 
 
 @end

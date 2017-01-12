@@ -55,10 +55,11 @@
     [button setTitle:kTestTitleName forState:UIControlStateNormal];
     button.backgroundColor = [UIColor brownColor];
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
-    button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    button.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    button.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     button.cs_imageSize = CGSizeMake(40, 40);
-    button.cs_buttonImagePositionType = CSButtonImagePositionTypeTop;
+    button.cs_buttonImagePositionMode = CSButtonImagePositionModeTop;
 }
 
 
@@ -75,7 +76,7 @@
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
     button.cs_imageSize = CGSizeMake(40, 40);
-    button.cs_buttonImagePositionType = CSButtonImagePositionTypeBottom;
+    button.cs_buttonImagePositionMode = CSButtonImagePositionModeBottom;
 }
 
 -(void)centerImageButton{
@@ -103,7 +104,7 @@
     button.cs_titleMaxWidth = 60;
     button.cs_middleDistance = 6;
     button.cs_imageSize = CGSizeMake(20, 20);
-    button.cs_buttonImagePositionType = CSButtonImagePositionTypeDefault;
+    button.cs_buttonImagePositionMode = CSButtonImagePositionModeDefault;
 }
 
 -(void)rightImageButton{
@@ -118,9 +119,10 @@
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    button.cs_titleMaxWidth = 60;
+    button.cs_middleDistance = 10;
+    button.cs_titleMaxWidth = 200;
     button.cs_imageSize = CGSizeMake(20, 20);
-    button.cs_buttonImagePositionType = CSButtonImagePositionTypeRight;
+    button.cs_buttonImagePositionMode = CSButtonImagePositionModeRight;
 }
 
 
