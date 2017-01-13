@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CSButton"
-  s.version      = "0.2.0"
+  s.version      = "0.3.2"
   s.summary      = "Custom the position of the ImageView relative to the titleLabel in UIButton"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'Joslyn' => 'cs_joslyn@foxmail.com' }

@@ -39,21 +39,21 @@
     CGFloat label_x_v = (self.frame.size.width - titleRect_temp.size.width) / 2;
     
     switch (self.cs_buttonImagePositionMode) {
-            case CSButtonImagePositionModeRight:
+        case CSButtonImagePositionModeRight:
             
             titleRect_temp.origin = CGPointMake(margin_x, label_y_h);
             imgRect_temp.origin = CGPointMake(margin_x + titleRect_temp.size.width + self.cs_middleDistance, img_y_h);
             
             break;
             
-            case CSButtonImagePositionModeTop:
+        case CSButtonImagePositionModeTop:
             
             imgRect_temp.origin = CGPointMake(img_x_v, margin_y);
             titleRect_temp.origin = CGPointMake(label_x_v, margin_y + imgRect_temp.size.height + self.cs_middleDistance);
             
             break;
             
-            case CSButtonImagePositionModeBottom:
+        case CSButtonImagePositionModeBottom:
             
             titleRect_temp.origin = CGPointMake(label_x_v, margin_y);
             imgRect_temp.origin = CGPointMake(img_x_v, margin_y + titleRect_temp.size.height + self.cs_middleDistance);
@@ -72,35 +72,22 @@
     self.titleLabel.frame = titleRect_temp;
 }
 
-
 -(CGSize)cs_imageSize {
     
     if (_cs_imageSize.height == 0.0 || _cs_imageSize.width == 0.0) {
         
-        return self.imageView.frame.size;
-    }else {
-        return _cs_imageSize;
+        _cs_imageSize = self.imageView.frame.size;
     }
-}
-
--(CGFloat)cs_middleDistance {
-    
-    if (_cs_middleDistance) {
-        
-        CGFloat distance_max = self.frame.size.width - self.cs_imageSize.width - [self titleSize].width;
-        
-        return (_cs_middleDistance > distance_max) ? distance_max : _cs_middleDistance;
-    }
-    return _cs_middleDistance;
+    return _cs_imageSize;
 }
 
 -(CGFloat)cs_titleMaxWidth {
     
-    if (_cs_titleMaxWidth) {
-        
-        CGFloat title_width_max = self.frame.size.width - self.cs_imageSize.width - _cs_middleDistance;
-        
-        return (_cs_titleMaxWidth > title_width_max) ? title_width_max : _cs_titleMaxWidth;
+    CGFloat title_width_max = self.frame.size.width - self.cs_imageSize.width - _cs_middleDistance;
+    
+    if (title_width_max < 0) {
+        _cs_middleDistance = 0;
+        _cs_titleMaxWidth = self.frame.size.width - self.cs_imageSize.width;
     }
     return _cs_titleMaxWidth;
 }
@@ -127,7 +114,7 @@
                                         attributes:@{NSFontAttributeName : self.titleLabel.font}
                                            context:nil].size;
     
-    if (self.cs_titleMaxWidth) {
+    if (self.cs_titleMaxWidth > 0) {
         
         titleSzie.width = self.cs_titleMaxWidth;
     }

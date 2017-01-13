@@ -21,7 +21,7 @@
 #define kButton_w_v (75)
 #define kButton_h_v (100)
 
-#define kTestTitleName (@"幸运心加长加长加长")
+#define kTestTitleName (@"幸运心")
 #define kTestImgName (@"icon_red")
 
 @interface ViewController ()
@@ -59,6 +59,7 @@
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     button.cs_imageSize = CGSizeMake(40, 40);
+    button.cs_middleDistance = 6;
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeTop;
 }
 
@@ -76,6 +77,7 @@
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
     button.cs_imageSize = CGSizeMake(40, 40);
+    button.cs_middleDistance = 6;
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeBottom;
 }
 
@@ -119,8 +121,7 @@
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    button.cs_middleDistance = 10;
-    button.cs_titleMaxWidth = 200;
+    button.cs_middleDistance = 6;
     button.cs_imageSize = CGSizeMake(20, 20);
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeRight;
 }

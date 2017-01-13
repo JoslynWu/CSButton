@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, CSButtonImagePositionType) {
-    CSButtonImagePositionTypeDefault,           // Image is on left, system default style.
-    CSButtonImagePositionTypeRight,             // Image is on right.
-    CSButtonImagePositionTypeTop,               // Image is on top.
-    CSButtonImagePositionTypeBottom             // Image is on bottom.
+typedef NS_ENUM(NSInteger, CSButtonImagePositionMode) {
+    CSButtonImagePositionModeDefault,           // Image is on left, system default style.
+    CSButtonImagePositionModeRight,             // Image is on right.
+    CSButtonImagePositionModeTop,               // Image is on top.
+    CSButtonImagePositionModeBottom             // Image is on bottom.
 };
 
 @interface CSButton : UIButton
 
 /// The position of the ImageView relative to the titleLabel
-@property (nonatomic, assign) CSButtonImagePositionType cs_buttonImagePositionType;
+@property (nonatomic, assign) CSButtonImagePositionMode cs_buttonImagePositionMode;
 
 /// Distance between imageVeiw and titleLabel.
 @property (nonatomic, assign) CGFloat cs_middleDistance;
