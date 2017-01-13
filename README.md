@@ -3,7 +3,7 @@
 
 ### Custom the position of the ImageView relative to the titleLabel in UIButton.
 
-一个UIButon的派生类，可以调整图片与文字相对位置，图片和文字间距，以及图片显示大小。
+一个UIButon的派生类，可以调整图片与文字相对位置，图片和文字间距，指定文字宽度，以及图片显示大小。
 
 
 ## 效果图
@@ -22,18 +22,16 @@ CSButton.m
 
 ## 功能
 1、 调整图片与文字相对位置，
-配置`cs_buttonImagePositionType`属性即可。
+配置`cs_buttonImagePositionMode`属性即可。
 ```
-@property (nonatomic, assign) CSButtonImagePositionType cs_buttonImagePositionType;
+@property (nonatomic, assign) CSButtonImagePositionMode cs_buttonImagePositionMode;
 ```
 该属性为枚举类型：
 ```
-typedef NS_ENUM(NSInteger, CSButtonImagePositionType) {
-    CSButtonImagePositionTypeDefault,
-    CSButtonImagePositionTypeRight, 
-    CSButtonImagePositionTypeTop, 
-    CSButtonImagePositionTypeBottom 
-};
+typedef NS_ENUM(NSInteger, CSButtonImagePositionMode) {
+    CSButtonImagePositionModeDefault,
+    CSButtonImagePositionModeRight,    CSButtonImagePositionModeTop,     CSButtonImagePositionModeBottom  
+    };
 ```
 2、 调整图片与文字间的距离，
 配置`cs_middleDistance`属性即可。
@@ -44,6 +42,11 @@ typedef NS_ENUM(NSInteger, CSButtonImagePositionType) {
 配置`cs_imageViewSize`属性即可。
 ```
 @property (nonatomic, assign) CGSize cs_imageViewSize;
+```
+4、 设置文字最大宽度，
+配置`cs_titleMaxWidth`属性即可。
+```
+@property (nonatomic, assign) CGFloat cs_titleMaxWidth;
 ```
 ## 说明
 1. 文字和图片都遵循水平竖直居中。
