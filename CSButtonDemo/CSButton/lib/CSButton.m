@@ -95,17 +95,15 @@
     
     CGSize titleSzie = [self calculationStringSizeWith:CGSizeMake(0, MAXFLOAT)];
     
-    if (_cs_titleMaxWidth <= 0) {
-        _cs_titleMaxWidth = 0;
-    }
-    
     if (self.cs_buttonImagePositionMode == CSButtonImagePositionModeTop ||
         self.cs_buttonImagePositionMode == CSButtonImagePositionModeBottom) {
         
-        if (_cs_titleMaxWidth > self.frame.size.width) {
-            _cs_titleMaxWidth = self.frame.size.width;
+        if (_cs_titleMaxWidth <= 0) {
+            _cs_titleMaxWidth = 0;
+        }else {
+            _cs_titleMaxWidth = MIN(_cs_titleMaxWidth, self.frame.size.width);
         }
-        
+
         if ((self.frame.size.height - self.cs_imageSize.height - _cs_middleDistance) < 0) {
             _cs_middleDistance = 0;
         }
@@ -114,21 +112,25 @@
             self.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
             maxHeight = self.frame.size.height - self.cs_imageSize.height - self.cs_middleDistance;
         }else {
-            maxHeight = titleSzie.height;
+            maxHeight = ceilf(titleSzie.height);
         }
         maxWidth = (self.cs_titleMaxWidth) ? self.cs_titleMaxWidth : self.frame.size.width;
     }else {
         
-        if ((self.frame.size.width - self.cs_imageSize.width - _cs_middleDistance) < 0) {
-            _cs_middleDistance = 0;
-            _cs_titleMaxWidth = self.frame.size.width - self.cs_imageSize.width;
+        if (_cs_titleMaxWidth <= 0) {
+            _cs_titleMaxWidth = 0;
+        }else {
+            if ((self.frame.size.width - self.cs_imageSize.width - _cs_middleDistance) < 0) {
+                _cs_middleDistance = 0;
+                _cs_titleMaxWidth = self.frame.size.width - self.cs_imageSize.width;
+            }
         }
         
         if (self.cs_isMultiLines) {
             self.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
             maxHeight = self.frame.size.height;
         }else {
-            maxHeight = titleSzie.height;
+            maxHeight = ceilf(titleSzie.height);
         }
         maxWidth = (self.cs_titleMaxWidth) ? self.cs_titleMaxWidth : (self.frame.size.width - self.cs_imageSize.width - self.cs_middleDistance);
     }
@@ -137,10 +139,10 @@
     
     if (self.cs_titleMaxWidth > 0) {
         titleSzie.width = self.cs_titleMaxWidth;
-    }else {
-//        titleSzie.width = maxWidth;
     }
-//    titleSzie.height = maxHeight;
+    
+    titleSzie.width = ceilf(titleSzie.width);
+    titleSzie.height = ceilf(titleSzie.height);
     
     return titleSzie;
 }

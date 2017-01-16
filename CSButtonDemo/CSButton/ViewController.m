@@ -21,7 +21,7 @@
 #define kButton_w_v (75)
 #define kButton_h_v (100)
 
-#define kTestTitleName (@"幸运红包")
+#define kTestTitleName (@"幸运红包幸运红包幸运红包幸运红包")
 #define kTestImgName (@"icon_red")
 
 @interface ViewController ()
@@ -58,7 +58,7 @@
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 //    button.titleLabel.textAlignment = NSTextAlignmentRight;
     
-//    button.cs_isMultiLines = YES;
+    button.cs_isMultiLines = YES;
     button.cs_imageSize = CGSizeMake(40, 40);
     button.cs_middleDistance = 6;
 //    button.cs_titleMaxWidth = 60;
