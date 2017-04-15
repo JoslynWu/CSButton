@@ -31,10 +31,10 @@ typedef NS_ENUM(NSInteger, CSButtonImagePositionMode) {
 
 /// 期望文字的最大宽度。
 /// The max width for titleLable.
-@property (nonatomic, assign) CGFloat cs_titleMaxWidth;
+//@property (nonatomic, assign) CGFloat cs_titleMaxWidth;
 
 /// 是否允许文字换行，默认不允许（单行）。
 /// Support multi-line. Default NO.
-@property (nonatomic, assign) BOOL cs_isMultiLines;
+//@property (nonatomic, assign) BOOL cs_isMultiLines;
 
 @end

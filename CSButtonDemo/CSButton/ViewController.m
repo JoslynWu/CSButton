@@ -21,7 +21,7 @@
 #define kButton_w_v (75)
 #define kButton_h_v (100)
 
-#define kTestTitleName (@"幸运红包幸运红包幸运红包幸运红包")
+#define kTestTitleName (@"小幸运")
 #define kTestImgName (@"icon_red")
 
 @interface ViewController ()
@@ -56,12 +56,9 @@
     button.backgroundColor = [UIColor brownColor];
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-//    button.titleLabel.textAlignment = NSTextAlignmentRight;
     
-    button.cs_isMultiLines = YES;
-    button.cs_imageSize = CGSizeMake(40, 40);
+    button.cs_imageSize = CGSizeMake(43, 43);
     button.cs_middleDistance = 6;
-//    button.cs_titleMaxWidth = 60;
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeTop;
 }
 
@@ -77,9 +74,8 @@
     button.backgroundColor = [UIColor brownColor];
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     
-    button.cs_imageSize = CGSizeMake(40, 40);
+    button.cs_imageSize = CGSizeMake(32, 43);
     button.cs_middleDistance = 6;
-//    button.cs_isMultiLines = YES;
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeBottom;
 }
 
@@ -105,7 +101,6 @@
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    button.cs_titleMaxWidth = 40;
     button.cs_middleDistance = 6;
     button.cs_imageSize = CGSizeMake(20, 20);
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeDefault;
@@ -123,10 +118,8 @@
     [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    button.cs_middleDistance = 6;
     button.cs_imageSize = CGSizeMake(20, 45);
     button.cs_buttonImagePositionMode = CSButtonImagePositionModeRight;
-    button.cs_isMultiLines = YES;
 }
 
 
