@@ -29,12 +29,4 @@ typedef NS_ENUM(NSInteger, CSButtonImagePositionMode) {
 /// Custom size for imageView.
 @property (nonatomic, assign) CGSize cs_imageSize;
 
-/// 期望文字的最大宽度。
-/// The max width for titleLable.
-//@property (nonatomic, assign) CGFloat cs_titleMaxWidth;
-
-/// 是否允许文字换行，默认不允许（单行）。
-/// Support multi-line. Default NO.
-//@property (nonatomic, assign) BOOL cs_isMultiLines;
-
 @end
