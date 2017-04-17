@@ -17,16 +17,16 @@ typedef NS_ENUM(NSInteger, CSButtonImagePositionMode) {
 
 @interface CSButton : UIButton
 
-/// The position of the ImageView relative to the titleLabel
+/// 图片相对于文字的位置。
+/// The position of the ImageView relative to the titleLabel.
 @property (nonatomic, assign) CSButtonImagePositionMode cs_buttonImagePositionMode;
 
+/// 图片与文字间的间距。
 /// Distance between imageVeiw and titleLabel.
 @property (nonatomic, assign) CGFloat cs_middleDistance;
 
-/// Custom size for imageView
+/// 期望图片显示尺寸。
+/// Custom size for imageView.
 @property (nonatomic, assign) CGSize cs_imageSize;
-
-/// The max width for titleLable
-@property (nonatomic, assign) CGFloat cs_titleMaxWidth;
 
 @end
