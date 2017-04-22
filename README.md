@@ -3,7 +3,9 @@
 
 ### Custom the position of the ImageView relative to the titleLabel in UIButton.
 
-一个UIButon的派生类，可以调整图片与文字相对位置，图片和文字间距，指定文字宽度，以及图片显示大小。
+一个UIButon的派生类，可以调整图片与文字相对位置，图片和文字间距，指定文字宽度，以及图片显示大小。这是个OC版本。
+
+### Swift版入口：[CSButton-Swift](https://github.com/JoslynWu/CSButton-Swift)
 
 
 ## 效果图
