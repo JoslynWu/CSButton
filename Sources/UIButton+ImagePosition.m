@@ -27,7 +27,6 @@
         return;
     }
     self.adjustsImageWhenHighlighted = self.cs_adjustsImageWhenHighlighted;
-    NSLog(@"--mode-->%zd", self.cs_imagePositionMode);
     
     CGRect imgRect_temp = self.imageView.frame;
     CGRect titleRect_temp = self.titleLabel.frame;
@@ -146,7 +145,5 @@
 - (void)setCs_adjustsImageWhenHighlighted:(BOOL)enable {
     objc_setAssociatedObject(self, @selector(cs_adjustsImageWhenHighlighted), @(enable), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
-
 
 @end
