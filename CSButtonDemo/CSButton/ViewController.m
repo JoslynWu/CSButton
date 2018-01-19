@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "CSButton.h"
+#import "UIButton+ImagePosition.h"
 
 
 #define kScreeSize ([UIScreen mainScreen].bounds.size)
@@ -45,9 +45,9 @@
     [self rightImageButton];
 }
 
--(void)topImageButton{
+- (void)topImageButton{
     
-    CSButton *button = [[CSButton alloc] initWithFrame:CGRectMake(kMargin_x, kMargin_y, kButton_w_v, kButton_h_v)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kMargin_x, kMargin_y, kButton_w_v, kButton_h_v)];
     [self.view addSubview:button];
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -59,13 +59,14 @@
     
     button.cs_imageSize = CGSizeMake(43, 43);
     button.cs_middleDistance = 6;
-    button.cs_buttonImagePositionMode = CSButtonImagePositionModeTop;
+    button.cs_imagePositionMode = ImagePositionModeTop;
+    button.cs_adjustsImageWhenHighlighted = YES;
 }
 
 
 -(void)bottomImageButton{
     
-    CSButton *button = [[CSButton alloc] initWithFrame:CGRectMake(kScreeSize.width - kMargin_x - kButton_w_v, kMargin_y,  kButton_w_v, kButton_h_v)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kScreeSize.width - kMargin_x - kButton_w_v, kMargin_y,  kButton_w_v, kButton_h_v)];
     [self.view addSubview:button];
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -76,12 +77,12 @@
     
     button.cs_imageSize = CGSizeMake(32, 43);
     button.cs_middleDistance = 6;
-    button.cs_buttonImagePositionMode = CSButtonImagePositionModeBottom;
+    button.cs_imagePositionMode = ImagePositionModeBottom;
 }
 
 -(void)centerImageButton{
     
-    CSButton *button = [[CSButton alloc] initWithFrame:CGRectMake(0, 0, kButton_w_h, kButton_w_h)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kButton_w_h, kButton_w_h)];
     button.center = self.view.center;
     [self.view addSubview:button];
     
@@ -91,24 +92,24 @@
 
 -(void)leftImageButton{
     
-    CSButton *button = [[CSButton alloc] initWithFrame:CGRectMake(kMargin_x, kScreeSize.height - kMargin_y - kButton_h_h, kButton_w_h, kButton_h_h)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kMargin_x, kScreeSize.height - kMargin_y - kButton_h_h, kButton_w_h, kButton_h_h)];
     [self.view addSubview:button];
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:kTestTitleName forState:UIControlStateNormal];
     button.backgroundColor = [UIColor brownColor];
-    [button setImage:[UIImage imageNamed:kTestImgName] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_heart"] forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
     button.cs_middleDistance = 6;
     button.cs_imageSize = CGSizeMake(20, 20);
-    button.cs_buttonImagePositionMode = CSButtonImagePositionModeDefault;
+    button.cs_imagePositionMode = ImagePositionModeDefault;
 }
 
 -(void)rightImageButton{
     
-    CSButton *button = [[CSButton alloc] initWithFrame:CGRectMake(kScreeSize.width - kMargin_x - kButton_w_h, kScreeSize.height - kMargin_y - kButton_h_h, kButton_w_h, kButton_h_h)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kScreeSize.width - kMargin_x - kButton_w_h, kScreeSize.height - kMargin_y - kButton_h_h, kButton_w_h, kButton_h_h)];
     [self.view addSubview:button];
     
     button.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -119,7 +120,7 @@
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
     button.cs_imageSize = CGSizeMake(20, 45);
-    button.cs_buttonImagePositionMode = CSButtonImagePositionModeRight;
+    button.cs_imagePositionMode = ImagePositionModeRight;
 }
 
 

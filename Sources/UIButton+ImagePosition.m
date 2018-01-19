@@ -1,24 +1,34 @@
 //
-//  CSButton.m
+//  UIButton+ImagePosition.m
 //  CSButton
 //
-//  Created by Joslyn wu on 2017/1/3.
-//  Copyright © 2017年 joslyn. All rights reserved.
+//  Created by Joslyn Wu on 2018/1/19.
+//  Copyright © 2018年 joslyn. All rights reserved.
 //
 
-#import "CSButton.h"
+#import "UIButton+ImagePosition.h"
+#import <objc/runtime.h>
 
-@implementation CSButton
+@implementation UIButton (ImagePosition)
 
--(instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.adjustsImageWhenHighlighted = NO;
-    }
-    return self;
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method layoutSubViews_original = class_getInstanceMethod(self, @selector(layoutSubviews));
+        Method layoutSubviews_swizzled = class_getInstanceMethod(self, @selector(cs_layoutSubviews));
+        method_exchangeImplementations(layoutSubViews_original, layoutSubviews_swizzled);
+    });
 }
 
--(void)layoutSubviews {
-    [super layoutSubviews];
+#pragma mark  -  swizzling
+- (void)cs_layoutSubviews {
+    [self cs_layoutSubviews];
+    if (self.cs_imagePositionMode == ImagePositionModeDefault) {
+        return;
+    }
+    self.adjustsImageWhenHighlighted = self.cs_adjustsImageWhenHighlighted;
+    NSLog(@"--mode-->%zd", self.cs_imagePositionMode);
+    
     CGRect imgRect_temp = self.imageView.frame;
     CGRect titleRect_temp = self.titleLabel.frame;
     
@@ -34,22 +44,22 @@
     CGFloat img_x_v = (self.frame.size.width - imgRect_temp.size.width) / 2;
     CGFloat label_x_v = (self.frame.size.width - titleRect_temp.size.width) / 2;
     
-    switch (self.cs_buttonImagePositionMode) {
-        case CSButtonImagePositionModeRight:
+    switch (self.cs_imagePositionMode) {
+        case ImagePositionModeRight:
             if (!self.titleLabel.textAlignment) { self.titleLabel.textAlignment = NSTextAlignmentRight; }
             titleRect_temp.origin = CGPointMake(margin_x, label_y_h);
             imgRect_temp.origin = CGPointMake(margin_x + titleRect_temp.size.width + self.cs_middleDistance, img_y_h);
             
             break;
             
-        case CSButtonImagePositionModeTop:
+        case ImagePositionModeTop:
             if (!self.titleLabel.textAlignment) { self.titleLabel.textAlignment = NSTextAlignmentCenter; }
             imgRect_temp.origin = CGPointMake(img_x_v, margin_y);
             titleRect_temp.origin = CGPointMake(label_x_v, margin_y + imgRect_temp.size.height + self.cs_middleDistance);
             
             break;
             
-        case CSButtonImagePositionModeBottom:
+        case ImagePositionModeBottom:
             if (!self.titleLabel.textAlignment) { self.titleLabel.textAlignment = NSTextAlignmentCenter; }
             titleRect_temp.origin = CGPointMake(label_x_v, margin_y);
             imgRect_temp.origin = CGPointMake(img_x_v, margin_y + titleRect_temp.size.height + self.cs_middleDistance);
@@ -57,10 +67,6 @@
             break;
             
         default:
-            self.cs_buttonImagePositionMode = CSButtonImagePositionModeDefault;
-            if (!self.titleLabel.textAlignment) { self.titleLabel.textAlignment = NSTextAlignmentLeft; }
-            imgRect_temp.origin = CGPointMake(margin_x, img_y_h);
-            titleRect_temp.origin = CGPointMake(margin_x + imgRect_temp.size.width + self.cs_middleDistance, label_y_h);
             
             break;
     }
@@ -68,13 +74,7 @@
     self.titleLabel.frame = titleRect_temp;
 }
 
--(CGSize)cs_imageSize {
-    if (_cs_imageSize.height == 0.0 || _cs_imageSize.width == 0.0) {
-        _cs_imageSize = self.imageView.frame.size;
-    }
-    return _cs_imageSize;
-}
-
+#pragma mark  -  action
 -(CGSize)titleSize {
     
     CGFloat maxWidth = 0.0;
@@ -82,16 +82,16 @@
     
     CGSize titleSzie = [self calculationStringSizeWith:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     
-    if (self.cs_buttonImagePositionMode == CSButtonImagePositionModeTop ||
-        self.cs_buttonImagePositionMode == CSButtonImagePositionModeBottom) {
-        if ((self.frame.size.height - self.cs_imageSize.height - _cs_middleDistance) < 0) {
-            _cs_middleDistance = 0;
+    if (self.cs_imagePositionMode == ImagePositionModeTop ||
+        self.cs_imagePositionMode == ImagePositionModeBottom) {
+        if ((self.frame.size.height - self.cs_imageSize.height - self.cs_middleDistance) < 0) {
+            self.cs_middleDistance = 0;
         }
         maxHeight = ceilf(titleSzie.height);
         maxWidth = self.frame.size.width;
     }else {
-        if ((self.frame.size.width - self.cs_imageSize.width - _cs_middleDistance) < 0) {
-            _cs_middleDistance = 0;
+        if ((self.frame.size.width - self.cs_imageSize.width - self.cs_middleDistance) < 0) {
+            self.cs_middleDistance = 0;
         }
         maxHeight = self.frame.size.height;
         maxWidth = self.frame.size.width - self.cs_imageSize.width - self.cs_middleDistance;
@@ -108,5 +108,45 @@
                                            attributes:@{NSFontAttributeName : self.titleLabel.font}
                                               context:nil].size;
 }
+
+-(CGSize)cs_imageSize {
+    NSValue *imgSizeValue = objc_getAssociatedObject(self, _cmd);
+    CGSize imgSize = imgSizeValue.CGSizeValue;
+    if (imgSize.height == 0.0 || imgSize.width == 0.0) {
+        imgSize = self.imageView.frame.size;
+    }
+    return imgSize;
+}
+
+- (void)setCs_imageSize:(CGSize)cs_imageSize {
+    NSValue *imgSizeValue = [NSValue valueWithCGSize:cs_imageSize];
+    objc_setAssociatedObject(self, @selector(cs_imageSize), imgSizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CSImagePositionMode)cs_imagePositionMode {
+    return ((NSNumber *)objc_getAssociatedObject(self, _cmd)).integerValue;
+}
+
+-(void)setCs_imagePositionMode:(CSImagePositionMode)cs_imagePositionMode {
+    objc_setAssociatedObject(self, @selector(cs_imagePositionMode), @(cs_imagePositionMode), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)cs_middleDistance {
+    return ((NSNumber *)objc_getAssociatedObject(self, _cmd)).floatValue;
+}
+
+- (void)setCs_middleDistance:(CGFloat)cs_middleDistance {
+    objc_setAssociatedObject(self, @selector(cs_middleDistance), @(cs_middleDistance), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)cs_adjustsImageWhenHighlighted {
+    return ((NSNumber *)objc_getAssociatedObject(self, _cmd)).boolValue;
+}
+
+- (void)setCs_adjustsImageWhenHighlighted:(BOOL)enable {
+    objc_setAssociatedObject(self, @selector(cs_adjustsImageWhenHighlighted), @(enable), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
 
 @end
