@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CSButton"
-  s.version      = "0.5.1"
+  s.version      = "0.5.2"
   s.summary      = "Custom the position of the ImageView relative to the titleLabel in UIButton. \n 
   一个UIButon的Category，可以调整图片与文字相对位置，图片和文字间距，指定文字宽度，以及图片显示大小。"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
