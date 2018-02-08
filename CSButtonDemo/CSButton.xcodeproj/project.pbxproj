@@ -119,6 +119,7 @@
 		9E4F21F11E1CD9E200BF679D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CS;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = joslyn;
 				TargetAttributes = {

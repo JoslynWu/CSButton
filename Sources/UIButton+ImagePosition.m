@@ -111,7 +111,7 @@
 -(CGSize)cs_imageSize {
     NSValue *imgSizeValue = objc_getAssociatedObject(self, _cmd);
     CGSize imgSize = imgSizeValue.CGSizeValue;
-    if (imgSize.height == 0.0 || imgSize.width == 0.0) {
+    if (CGSizeEqualToSize(imgSize, CGSizeZero)) {
         imgSize = self.imageView.frame.size;
     }
     return imgSize;
